@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private Spinner spDiasSemana = null;
@@ -22,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
         spDiasSemana = findViewById(R.id.spDiasSemana);
         tvSeleccion = findViewById(R.id.tvSeleccion);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
-                                                    R.array.spinner_dias,
-                                                    R.layout.support_simple_spinner_dropdown_item);
+        ArrayList<String> diasSemana = creaDiasSemana();
+
+
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getApplicationContext(),
+                                                    R.layout.support_simple_spinner_dropdown_item,
+                                                    diasSemana);
 
         spDiasSemana.setAdapter(adapter);
 
@@ -41,5 +46,20 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
+    }
+
+    private ArrayList<String> creaDiasSemana() {
+        ArrayList<String> diasSemana = new ArrayList<>();
+
+        diasSemana.add("Seleccione ...");
+        diasSemana.add("Lunes");
+        diasSemana.add("Martes");
+        diasSemana.add("Miércoles");
+        diasSemana.add("Jueves");
+        diasSemana.add("Viernes");
+        diasSemana.add("Sabado");
+        diasSemana.add("Domingo");
+
+        return diasSemana;
     }
 }
